@@ -1,0 +1,41 @@
+import pandas as pd
+# First batch of clients
+Bank_df_1 = pd.DataFrame({'ID': [1,2,3,4,5],
+                          'F_name': ['Shane', 'Jake', 'Mike', 'Aaron', 'Kristen'],
+                          'L_name': ['Miller', 'Gomez', 'Warrens', 'Houston', 'Stewart']},
+                           index = [0,1,2,3,4])
+Bank_df_1
+
+# Second batch of clients
+Bank_df_2 = pd.DataFrame({'ID': [6,7,8,9,10],
+                          'F_name': ['Emily', 'Jason', 'Enrique', 'Selena', 'Kate'],
+                          'L_name': ['Homes', 'Weasley', 'Iglesius', 'Lopez', 'Wisnton']},
+                           index = [5,6,7,8,9])
+Bank_df_2
+
+# Combine both batches
+bank_df_all = pd.concat([Bank_df_1,Bank_df_2])
+
+# Salary information for all 10 clients
+Bank_df_3 = pd.DataFrame({'ID': [1,2,3,4,5,6,7,8,9,10],
+                          'Annual_salary[$]': [10, 20, 5, 4, 25, 40, 30, 45, 35, 50]},
+                           index = [0,1,2,3,4,5,6,7,8,9])
+Bank_df_3
+
+# Merge client info with salary
+all_banks = pd.merge(bank_df_all,Bank_df_3, on = 'ID' )
+
+# New client (Me)
+Bank_df_4 = pd.DataFrame({'ID': [11],
+                          'F_name': ["Gisele"],
+                          'L_name': ['Gomes'],
+                          'Annual_salary[$]': [70]},
+                           index = [10])
+Bank_df_4
+
+# Add new client to the combined dataframe
+all_banks = pd.concat([all_banks, Bank_df_4], ignore_index=True)
+
+# Print final result
+print(all_banks)
+
